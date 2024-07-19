@@ -25,6 +25,7 @@ file_path = sys.argv[1]
 #file_path = 'blast_results_sample.csv'  
 df = pd.read_csv(file_path, usecols=['latitude','longitude','pident'])
 df_unique = df.drop_duplicates()
+df_unique = df.sort_values('pident') #sorting values so high pindent values are plotted last, and not obscrurred by low values (not they obscure the high values)
 
 # Get the min and max values for lat and lon, to set the map size
 min_lat, max_lat = df_unique['latitude'].min(), df_unique['latitude'].max()
